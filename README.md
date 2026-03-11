@@ -56,5 +56,16 @@ example-webscraper/
 ## Run app
 
 ```bash
+# Activate
 source .venv/bin/activate
+
+# Run server
+uvicorn app.main:app --reload
+
+# Check health (in browser)
+http://127.0.0.1:8000/health
+
+# Check FastAPI docs
+http://127.0.0.1:8000/docs
+
 ```

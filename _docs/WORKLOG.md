@@ -14,13 +14,13 @@
 - [x] Initialize Python project
 - [x] Create virtual environment
 - [x] Install base dependencies
-- [ ] Create folder structure
-- [ ] Add gitignore
+- [x] Create folder structure
+- [x] Add gitignore
 - [ ] Add env example
 
 ### Phase 2 — App skeleton
-- [ ] Create FastAPI app entrypoint
-- [ ] Add health route
+- [x] Create FastAPI app entrypoint
+- [x] Add health route
 - [ ] Add settings/config module
 - [ ] Add request/response schemas
 

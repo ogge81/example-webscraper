@@ -51,3 +51,10 @@ example-webscraper/
 ├─ .gitignore
 ├─ README.md
 └─ WORKLOG.md
+```
+
+## Run app
+
+```bash
+source .venv/bin/activate
+```

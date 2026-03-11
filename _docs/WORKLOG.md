@@ -11,9 +11,9 @@
 
 ### Phase 1 — Foundation
 - [x] Create README and worklog
-- [ ] Initialize Python project
-- [ ] Create virtual environment
-- [ ] Install base dependencies
+- [x] Initialize Python project
+- [x] Create virtual environment
+- [x] Install base dependencies
 - [ ] Create folder structure
 - [ ] Add gitignore
 - [ ] Add env example

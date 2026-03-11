@@ -2,7 +2,7 @@
 
 ## Project
 
-**Name:** boilerplate-webscraping  
+**Name:** example-webscraper  
 **Purpose:** learn webscraping by building a minimal but extendable FastAPI-based scraper project
 
 ---
@@ -16,12 +16,12 @@
 - [x] Install base dependencies
 - [x] Create folder structure
 - [x] Add gitignore
-- [ ] Add env example
+- [x] Add env example
 
 ### Phase 2 — App skeleton
 - [x] Create FastAPI app entrypoint
 - [x] Add health route
-- [ ] Add settings/config module
+- [x] Add settings/config module
 - [ ] Add request/response schemas
 
 ### Phase 3 — Scraping MVP

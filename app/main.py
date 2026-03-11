@@ -1,12 +1,20 @@
 from fastapi import FastAPI
 
+from app.core.config import get_settings
+
+settings = get_settings()
 
 app = FastAPI(
-    title="Example Webscraper",
+    title=settings.app_name,
     description="Minimal FastAPI webscraping boilerplate",
-    version="0.1.0"
+    version=settings.app_version,
 )
 
 @app.get("/health")
-async def health():
-    return {"status": "ok"}
+async def health() -> dict[str, str | bool]:
+    return {
+        "status": "ok",
+        "app": settings.app_name,
+        "version": settings.app_version,
+        "debug": settings.debug,
+    }

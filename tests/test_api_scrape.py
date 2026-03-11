@@ -20,7 +20,7 @@ def test_scrape_returns_structured_data(monkeypatch) -> None:
               <body>
                 <h1>Mock H1</h1>
                 <h2>Mock H2</h2>
-                <a href="https://example.com/about">About</a>
+                <a href="/about">About</a>
                 <p>Hello from mocked scrape endpoint test.</p>
               </body>
             </html>
@@ -43,6 +43,7 @@ def test_scrape_returns_structured_data(monkeypatch) -> None:
     assert len(data["links"]) == 1
     assert data["links"][0]["href"] == "https://example.com/about"
     assert data["links"][0]["text"] == "About"
+    assert data["links"][0]["is_internal"] is True
     assert "Hello from mocked scrape endpoint test." in data["text_preview"]
 
 

@@ -22,7 +22,11 @@ router = APIRouter()
 async def scrape_page(payload: ScrapeRequest) -> ScrapeResponse:
     try:
         page = await fetch_page(payload.url)
-        return parse_page(page)
+        return parse_page(
+            page,
+            links_only=payload.links_only,
+            internal_only=payload.internal_only,
+        )
     except ResponseTooLargeError as exc:
         raise HTTPException(
             status_code=status.HTTP_413_CONTENT_TOO_LARGE,

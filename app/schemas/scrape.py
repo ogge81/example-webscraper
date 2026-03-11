@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -10,6 +10,8 @@ settings = get_settings()
 
 class ScrapeRequest(BaseModel):
     url: str = Field(..., min_length=1, max_length=2048)
+    links_only: bool = False
+    internal_only: bool = False
 
     @field_validator("url")
     @classmethod
@@ -35,6 +37,7 @@ class ScrapeRequest(BaseModel):
 class LinkItem(BaseModel):
     href: str
     text: str
+    is_internal: bool
 
 
 class ScrapeResponse(BaseModel):

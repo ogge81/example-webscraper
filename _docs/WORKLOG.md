@@ -34,15 +34,22 @@
 
 ### Phase 4 — Quality
 - [x] Add tests for parsing logic
-- [ ] Add tests for validation
+- [x] Add tests for validation
 - [x] Add API test for health endpoint
 - [x] Add API test for scrape endpoint
 - [x] Refine docs
 
-### Phase 5 — Later upgrades
+### Phase 5 - Extras
+- [x] Add CLI entry for scraping
+- [x] Add usage examples to README
+- [x] Add link extraction mode
+
+### Out of scope for this project
+- [ ] Add richer CLI flags for output selection
 - [ ] Add Postgres
 - [ ] Add Docker
 - [ ] Save scrape results
 - [ ] Add crawl mode
+- [ ] Add crawl mode from CLI
 - [ ] Add async/background jobs
 - [ ] Add JS-rendered scraping option

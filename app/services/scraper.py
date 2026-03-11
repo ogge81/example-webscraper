@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from urllib.parse import urljoin, urlparse
 
 import certifi
 import httpx
@@ -86,14 +87,32 @@ async def _read_response_content(response: httpx.Response) -> str:
     return content
 
 
-def parse_page(page: FetchedPage) -> ScrapeResponse:
+def parse_page(
+        page: FetchedPage,
+        *,
+        links_only: bool = False,
+        internal_only: bool = False,
+    ) -> ScrapeResponse:
     soup = BeautifulSoup(page.html, "html.parser")
+
+    links = _extract_links(soup, base_url=page.final_url, internal_only=internal_only)
+
+    if links_only:
+        return ScrapeResponse(
+            url=page.requested_url,
+            final_url=page.final_url,
+            title=None,
+            meta_description=None,
+            h1_headings=[],
+            h2_headings=[],
+            links=links,
+            text_preview="",
+        )
 
     title = _extract_title(soup)
     meta_description = _extract_meta_description(soup)
     h1_headings = _extract_headings(soup, "h1")
     h2_headings = _extract_headings(soup, "h2")
-    links = _extract_links(soup)
     text_preview = _extract_text_preview(soup)
 
     return ScrapeResponse(
@@ -139,20 +158,50 @@ def _extract_headings(soup: BeautifulSoup, tag_name: str) -> list[str]:
     return headings
 
 
-def _extract_links(soup: BeautifulSoup, limit: int = 25) -> list[LinkItem]:
+def _extract_links(
+    soup: BeautifulSoup,
+    *,
+    base_url: str,
+    internal_only: bool = False,
+    limit: int = 25,
+) -> list[LinkItem]:
     items: list[LinkItem] = []
+    seen: set[str] = set()
+
+    base_domain = urlparse(base_url).netloc
 
     for tag in soup.find_all("a", href=True):
         href = tag.get("href")
         if not isinstance(href, str):
             continue
 
+        href = href.strip()
+        if not href:
+            continue
+
+        absolute_href = urljoin(base_url, href)
+        parsed_href = urlparse(absolute_href)
+
+        if parsed_href.scheme not in settings.allowed_schemes_list:
+            continue
+
+        is_internal = parsed_href.netloc == base_domain
+
+        if internal_only and not is_internal:
+            continue
+
+        if absolute_href in seen:
+            continue
+
+        seen.add(absolute_href)
+
         text = tag.get_text(" ", strip=True)
 
         items.append(
             LinkItem(
-                href=href.strip(),
+                href=absolute_href,
                 text=text,
+                is_internal=is_internal,
             )
         )
 

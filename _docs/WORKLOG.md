@@ -45,11 +45,11 @@
 - [x] Add link extraction mode
 
 ### Out of scope for this project
-- [ ] Add richer CLI flags for output selection
-- [ ] Add Postgres
-- [ ] Add Docker
-- [ ] Save scrape results
-- [ ] Add crawl mode
-- [ ] Add crawl mode from CLI
-- [ ] Add async/background jobs
-- [ ] Add JS-rendered scraping option
+- Postgres
+- Docker
+- Save scrape results
+- crawl mode
+- async/background jobs
+- JS-rendered scraping option
+
+#### Project wrapped as MVP portfolio version.

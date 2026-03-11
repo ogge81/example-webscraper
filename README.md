@@ -12,21 +12,12 @@ Build a clean, reusable project for exploring webscraping on different websites 
 - Return structured results
 - Keep code clean, typed, and easy to extend
 
-## Later
+## Out of scope
 
 - Save results to Postgres
 - Add Docker support
 - Add crawling / queueing
 - Add JS-rendered scraping if needed
-
-## Tech stack
-
-- Python
-- FastAPI
-- Pydantic
-- httpx
-- BeautifulSoup
-- pytest
 
 ## Principles
 
@@ -36,7 +27,32 @@ Build a clean, reusable project for exploring webscraping on different websites 
 - Validation and error handling from the start
 - Easy to extend later
 
-## Planned structure
+## Tech stack
+
+- Python 3.12
+- FastAPI
+- Pydantic
+- httpx
+- BeautifulSoup
+- pytest
+
+## Features
+
+- Scrape any static HTML page
+- Extract:
+  - title
+  - meta description
+  - headings
+  - links
+  - text preview
+- Normalize relative URLs
+- Filter internal links
+- API + CLI interface
+- Typed schemas with Pydantic
+- FastAPI documentation
+- Unit and API tests
+
+## Structure
 
 ```txt
 example-webscraper/
@@ -45,6 +61,7 @@ example-webscraper/
 │  ├─ core/
 │  ├─ schemas/
 │  ├─ services/
+│  ├─ cli.py
 │  └─ main.py
 ├─ tests/
 ├─ .env.example
@@ -52,6 +69,7 @@ example-webscraper/
 ├─ README.md
 └─ WORKLOG.md
 ```
+
 
 ## Run app
 
@@ -73,10 +91,6 @@ http://127.0.0.1:8000/docs
 
 # Run tests
 python -m pytest
-
-{
-  "url": "https://example.com"
-}
 
 # CLI Usage (run scraper directly from terminal)
 python -m app.cli https://example.com --pretty
@@ -117,25 +131,3 @@ What to expect:
 
 Note:
 Some websites block bots, require JavaScript, or have anti-scraping protections. For this MVP, prefer simple static pages.
-
-## How to play around
-
-Try changing one thing at a time and compare the output.
-
-Ideas:
-
-- scrape different pages and compare titles, headings, links, and text preview
-- inspect how redirecting URLs affect `final_url`
-- test invalid URLs and see validation errors
-- try a very large page and observe size protection
-- change `USER_AGENT` in `.env` and test again
-- reduce `REQUEST_TIMEOUT` in `.env` and see how failures behave
-
-Suggested learning path:
-
-1. run the CLI on a simple page
-2. run the same URL in Swagger
-3. compare outputs
-4. inspect the HTML of the page in browser dev tools
-5. map HTML elements to the parsed JSON fields
-6. modify parser functions and observe what changes

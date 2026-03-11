@@ -1,19 +1,28 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 
 from app.schemas import ScrapeRequest, ScrapeResponse
+from app.services.scraper import (
+    FetchError,
+    ResponseTooLargeError,
+    fetch_page,
+    parse_page,
+)
 
 router = APIRouter()
 
 
 @router.post("/scrape", response_model=ScrapeResponse)
 async def scrape_page(payload: ScrapeRequest) -> ScrapeResponse:
-    return ScrapeResponse(
-        url=payload.url,
-        final_url=payload.url,
-        title=None,
-        meta_description=None,
-        h1_headings=[],
-        h2_headings=[],
-        links=[],
-        text_preview="",
-    )
+    try:
+        page = await fetch_page(payload.url)
+        return parse_page(page)
+    except ResponseTooLargeError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            detail=str(exc),
+        ) from exc
+    except FetchError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc),
+        ) from exc

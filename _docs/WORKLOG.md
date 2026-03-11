@@ -26,14 +26,14 @@
 
 ### Phase 3 — Scraping MVP
 - [x] Add URL validation
-- [ ] Add HTTP fetch service
-- [ ] Add HTML parsing service
-- [ ] Extract title, meta description, headings, links, text preview
-- [ ] Create scrape endpoint
-- [ ] Add error handling for bad URLs / failed requests
+- [x] Add HTTP fetch service
+- [x] Add HTML parsing service
+- [x] Extract title, meta description, headings, links, text preview
+- [x] Create scrape endpoint
+- [x] Add error handling for bad URLs / failed requests
 
 ### Phase 4 — Quality
-- [ ] Add tests for parsing logic
+- [x] Add tests for parsing logic
 - [ ] Add tests for validation
 - [ ] Add API test for health endpoint
 - [ ] Add API test for scrape endpoint

@@ -15,6 +15,7 @@ class Settings(BaseSettings):
         default="example-webscraper/0.1 (+learning project)",
         alias="USER_AGENT",
     )
+    verify_ssl: bool = Field(default=True, alias="VERIFY_SSL")
 
     allowed_schemes: str = Field(default="http,https", alias="ALLOWED_SCHEMES")
 

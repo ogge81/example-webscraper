@@ -71,4 +71,8 @@ http://127.0.0.1:8000/docs
 # Run tests
 python -m pytest
 
+{
+  "url": "https://example.com"
+}
+
 ```

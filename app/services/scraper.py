@@ -44,7 +44,7 @@ async def fetch_page(url: str) -> FetchedPage:
             headers=headers,
             timeout=timeout,
             follow_redirects=True,
-            verify=certifi.where()
+            verify=certifi.where() if settings.verify_ssl else False,
         ) as client:
             response = await client.get(url)
             response.raise_for_status()

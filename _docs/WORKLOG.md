@@ -22,10 +22,10 @@
 - [x] Create FastAPI app entrypoint
 - [x] Add health route
 - [x] Add settings/config module
-- [ ] Add request/response schemas
+- [x] Add request/response schemas
 
 ### Phase 3 — Scraping MVP
-- [ ] Add URL validation
+- [x] Add URL validation
 - [ ] Add HTTP fetch service
 - [ ] Add HTML parsing service
 - [ ] Extract title, meta description, headings, links, text preview

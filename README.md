@@ -68,4 +68,7 @@ http://127.0.0.1:8000/health
 # Check FastAPI docs
 http://127.0.0.1:8000/docs
 
+# Run tests
+python -m pytest
+
 ```

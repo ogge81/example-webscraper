@@ -56,7 +56,10 @@ example-webscraper/
 ## Run app
 
 ```bash
-# Activate
+# Create viritual enviroment
+python3 -m venv .venv
+
+# Activate (to deactivate, command "deactivate")
 source .venv/bin/activate
 
 # Run server

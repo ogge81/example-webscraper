@@ -11,7 +11,14 @@ from app.services.scraper import (
 router = APIRouter()
 
 
-@router.post("/scrape", response_model=ScrapeResponse)
+@router.post(
+    "/scrape",
+    response_model=ScrapeResponse,
+    responses={
+        400: {"description": "Bad request while fetching remote page"},
+        413: {"description": "Remote page exceeded max allowed size"},
+    },
+)
 async def scrape_page(payload: ScrapeRequest) -> ScrapeResponse:
     try:
         page = await fetch_page(payload.url)

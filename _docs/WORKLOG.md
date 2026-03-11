@@ -35,9 +35,9 @@
 ### Phase 4 — Quality
 - [x] Add tests for parsing logic
 - [ ] Add tests for validation
-- [ ] Add API test for health endpoint
-- [ ] Add API test for scrape endpoint
-- [ ] Refine docs
+- [x] Add API test for health endpoint
+- [x] Add API test for scrape endpoint
+- [x] Refine docs
 
 ### Phase 5 — Later upgrades
 - [ ] Add Postgres
